@@ -1,0 +1,4 @@
+Plugin 'mileszs/ack.vim'
+Plugin 'chriskempson/tomorrow-theme'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'cypok/vim-sml'

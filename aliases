@@ -1,0 +1,8 @@
+# Docker
+alias tlf="tail -f"
+docker_run() { docker run -a stdin -a stdout -i -t "$@" /bin/bash ;}
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -20"
+alias vi="mvim -v"
+alias vim="mvim -v"
+alias emacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs -nw"
+alias sml="rlwrap -f /usr/local/smlnj/keywords -t sml /usr/local/smlnj/bin/sml"

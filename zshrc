@@ -1,0 +1,32 @@
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[ -s "/Users/david.grizzanti/.nvm/nvm.sh" ] && . "/Users/david.grizzanti/.nvm/nvm.sh" # This loads nvm
+setopt hist_ignore_all_dups inc_append_history share_history
+
+function git_prompt_info() {
+  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  echo " %{$fg_bold[green]%}${ref#refs/heads/}%{$reset_color%}$(parse_git_dirty)"
+}
+
+# Checks if working tree is dirty
+parse_git_dirty() {
+  local SUBMODULE_SYNTAX=''
+  local GIT_STATUS=''
+  local CLEAN_MESSAGE='nothing to commit (working directory clean)'
+  if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
+      GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} -uno 2> /dev/null | tail -n1)
+  else
+      GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} 2> /dev/null | tail -n1)
+  fi
+  if [[ -n $GIT_STATUS ]]; then
+    echo "%{$fg[blue]%} %{$fg[yellow]%}✗%{$reset_color%}"
+  else
+    echo ""
+  fi
+}
+
+bindkey "^K" vi-kill-eol
+bindkey "^D" backward-kill-line
+
+export DOCKER_HOST=tcp://192.168.59.103:2375
+export PATH="$PATH:/usr/local/smlnj/bin"
