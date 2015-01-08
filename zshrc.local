@@ -26,7 +26,7 @@ parse_git_dirty() {
 }
 
 bindkey "^K" vi-kill-eol
-bindkey "^D" backward-kill-line
-
-export DOCKER_HOST=tcp://192.168.59.103:2375
-export PATH="$PATH:/usr/local/smlnj/bin"
+bindkey "^D" backward-kill-word
+bindkey "^W" delete-word
+bindkey "^H"  vi-backward-word
+bindkey "" vi-forward-word
